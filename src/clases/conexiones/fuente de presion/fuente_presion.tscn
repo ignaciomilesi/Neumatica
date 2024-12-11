@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://crujhfe3avgbt"]
+
+[ext_resource type="Script" path="res://src/clases/conexiones/fuente de presion/fuente_presion.gd" id="1_ioowk"]
+[ext_resource type="Texture2D" uid="uid://b7islbes3exv" path="res://assets/art/conecciones/fuenteDePresion.png" id="2_8754e"]
+
+[node name="FuentePresion" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ioowk")
+
+[node name="valor" type="Label" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 50.0
+offset_right = 12.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1"
+
+[node name="ColorRect" type="ColorRect" parent="valor"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.94902, 0.94902, 0.94902, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8754e")
+offset = Vector2(0, 26)
+
+[node name="Input" type="LineEdit" parent="."]
+visible = false
+offset_left = -60.0
+offset_top = 100.0
+offset_right = 60.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="valor2" type="Label" parent="Input"]
+z_index = 1
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = 1.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Ingrese valor
+de presion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Input/valor2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.94902, 0.94902, 0.94902, 1)
+metadata/_edit_lock_ = true
+
+[connection signal="text_submitted" from="Input" to="." method="_on_input_text_submitted"]

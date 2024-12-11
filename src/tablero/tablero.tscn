@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://wyjkgpww16rj"]
+
+[ext_resource type="Script" path="res://src/tablero/tablero.gd" id="1_md8w1"]
+[ext_resource type="PackedScene" uid="uid://lnb8d6xwtg8q" path="res://src/UI/ui.tscn" id="2_0wvke"]
+
+[sub_resource type="GDScript" id="GDScript_kqcu2"]
+resource_name = "camaraTablero"
+script/source = "extends Camera2D
+
+func _input(event: InputEvent):
+	
+	if Input.is_action_pressed(\"rueda_click\") and event is InputEventMouseMotion:
+		var movement: Vector2 = event.relative
+		position -= movement * 1.5
+	
+	if Input.is_action_pressed(\"rueda_up\"):
+		zoom += Vector2(0.1, 0.1)
+		
+	if Input.is_action_pressed(\"rueda_down\"):
+		if zoom.x > 0.2 and zoom.y > 0.2:
+			zoom -= Vector2(0.1, 0.1)
+"
+
+[node name="Tablero" type="Node2D"]
+script = ExtResource("1_md8w1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="ElementosFijos" type="Node2D" parent="."]
+
+[node name="Conexiones" type="Node2D" parent="."]
+
+[node name="Accesorios" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = SubResource("GDScript_kqcu2")
+
+[node name="UI" parent="Camera2D" instance=ExtResource("2_0wvke")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="actualizar" from="Camera2D/UI" to="." method="_on_ui_actualizar"]
+[connection signal="cancelar_nuevo_elemento" from="Camera2D/UI" to="." method="_on_ui_cancelar_nuevo_elemento"]
+[connection signal="detener" from="Camera2D/UI" to="." method="_on_ui_detener"]
+[connection signal="nuevo_elemento" from="Camera2D/UI" to="." method="_on_ui_nuevo_elemento"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx14ka3qfmmja"]
+
+[ext_resource type="Script" path="res://src/clases/conexiones/cañeria/cañeria.gd" id="1_1rm7n"]
+
+[node name="Cañeria" type="Node2D"]
+script = ExtResource("1_1rm7n")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Line2d" type="Line2D" parent="."]
+width = 3.0
+default_color = Color(0.404511, 0.404511, 0.404511, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="valor" type="Label" parent="Line2d"]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 12.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1"
+
+[node name="ColorRect" type="ColorRect" parent="Line2d/valor"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.94902, 0.94902, 0.94902, 1)
+
+[node name="Etiquetas" type="Control" parent="Line2d"]
+layout_mode = 3
+anchors_preset = 0

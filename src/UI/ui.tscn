@@ -1,0 +1,148 @@
+[gd_scene load_steps=2 format=3 uid="uid://lnb8d6xwtg8q"]
+
+[ext_resource type="Script" path="res://src/UI/ui.gd" id="1_udrv6"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_udrv6")
+
+[node name="HFlowContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="area_de_colocacion" type="Control" parent="HFlowContainer" groups=["areaDeColocacion"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Actualizar" type="Button" parent="HFlowContainer/area_de_colocacion"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Actualizar"
+
+[node name="Detener" type="Button" parent="HFlowContainer/area_de_colocacion"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Detener"
+
+[node name="Botones" type="Control" parent="HFlowContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Contenedor" type="VBoxContainer" parent="HFlowContainer/Botones"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -196.0
+offset_bottom = 118.0
+grow_horizontal = 0
+metadata/_edit_lock_ = true
+
+[node name="Barra" type="HBoxContainer" parent="HFlowContainer/Botones/Contenedor"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ContenedorNuevoElemento" type="VBoxContainer" parent="HFlowContainer/Botones/Contenedor/Barra"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Nuevo Elemento"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.289741, 0.289741, 0.289741, 1)
+metadata/_edit_lock_ = true
+
+[node name="Valvula" type="Button" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento" groups=["boton_UI"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Valvula"
+metadata/_edit_lock_ = true
+
+[node name="Deposito" type="Button" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento" groups=["boton_UI"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Deposito"
+metadata/_edit_lock_ = true
+
+[node name="ContenedorNuevaConexion" type="VBoxContainer" parent="HFlowContainer/Botones/Contenedor/Barra"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Nueva Conexion"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.289741, 0.289741, 0.289741, 1)
+metadata/_edit_lock_ = true
+
+[node name="Cañeria" type="Button" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion" groups=["boton_UI"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Cañeria"
+metadata/_edit_lock_ = true
+
+[node name="FuentePresion" type="Button" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion" groups=["boton_UI"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Fuente de presion"
+metadata/_edit_lock_ = true
+
+[node name="Exterior" type="Button" parent="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion" groups=["boton_UI"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Salida al exterior"
+metadata/_edit_lock_ = true
+
+[node name="Cancelar" type="Button" parent="HFlowContainer/Botones/Contenedor" groups=["boton_UI"]]
+visible = false
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 10
+text = "Cancelar"
+
+[connection signal="pressed" from="HFlowContainer/area_de_colocacion/Actualizar" to="." method="_on_actualizar_pressed"]
+[connection signal="pressed" from="HFlowContainer/area_de_colocacion/Detener" to="." method="_on_detener_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Valvula" to="." method="_on_valvula_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Deposito" to="." method="_on_deposito_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Cañeria" to="." method="_on_cañeria_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/FuentePresion" to="." method="_on_fuente_presion_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Exterior" to="." method="_on_exterior_pressed"]
+[connection signal="pressed" from="HFlowContainer/Botones/Contenedor/Cancelar" to="." method="_on_cancelar_pressed"]
