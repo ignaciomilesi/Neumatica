@@ -12,7 +12,7 @@ func desactivar_valvula():
 	$Sprite2D.position.x = 0
 	estadoActual = estados.REPOSO
 
-func conectarPuertos(puertoInicio : PuertoValvula, puertoFin : PuertoValvula):
+func conectarPuertos(puertoInicio : PuertoDeConexion, puertoFin : PuertoDeConexion):
 	
 	var presionPuerto1 = puertoInicio.conexionConectada.presion
 	var presionPuerto2 = puertoFin.conexionConectada.presion
@@ -26,7 +26,6 @@ func conectarPuertos(puertoInicio : PuertoValvula, puertoFin : PuertoValvula):
 		
 		puertoInicio.conexionConectada.modificar_masa(10)
 		puertoFin.conexionConectada.modificar_masa(-10)
-
 
 func actualizar():
 	

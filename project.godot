@@ -24,6 +24,7 @@ VariableGlobales="*res://src/globales/variables.gd"
 ElementoFijo=""
 areaDeColocacion=""
 actualizable=""
+puertoDeConexion=""
 
 [input]
 

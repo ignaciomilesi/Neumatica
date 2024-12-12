@@ -8,19 +8,19 @@ func set_presion(nueva_presion : float):
 func modificar_masa(masaAVariar: float) -> void:
 	pass
 
-func conectar(puerto: PuertoValvula) -> void:
-	puertoInicio = puerto
-	puerto.conexionConectada = self
+func conectar(puerto: PuertoDeConexion = null) -> void:
+	
+	puerto.conexion2 = self
 	
 	global_position = puerto.global_position
-	enConstrucion = false
+	instalando = false #indico que ya lo coloque para que no se mueva
 	
 	$Input.visible = true
 	$Input.grab_focus()
 
 func _process(_delta: float) -> void:
 	
-	if enConstrucion: global_position = get_global_mouse_position()
+	if instalando: global_position = get_global_mouse_position()
 
 func _on_input_text_submitted(new_text: String) -> void:
 	
@@ -31,8 +31,9 @@ func _on_input_text_submitted(new_text: String) -> void:
 		print( "Fuente de presion seteada a: ", presion)
 		$Input.visible = false
 		$valor.visible = true
-		finalizar_conexion()
-
+		finalizar_instalacion()
+"""
 func actualizar():
 	puertoInicio.presion = presion
 	puertoInicio.masa = 10
+"""

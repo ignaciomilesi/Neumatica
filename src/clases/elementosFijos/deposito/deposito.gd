@@ -13,11 +13,11 @@ var volumen : float = 0 :
 
 var masa : float = 0
 
-func colocar_elemento(event: InputEvent) -> void:
+func setear_elemento(event: InputEvent) -> void:
 	
-	if enColocacion and event is InputEventMouseButton and event.pressed:
+	if instalando and event is InputEventMouseButton and event.pressed:
 		
-		enColocacion = false
+		instalando = false
 		$Input.visible = true
 		$Input.grab_focus()
 
@@ -30,10 +30,11 @@ func _on_input_text_submitted(new_text: String) -> void:
 		
 		print( "Deposito seteada a: ", volumen)
 		$Input.visible = false
-		construcionFinalizada.emit()
+		
+		finalizar_instalacion()
 
 func actualizar():
-	var puertoConeccion : PuertoValvula = $"Puertos/1"
+	var puertoConeccion : PuertoDeConexion = $"Puertos/1"
 	
 	var presionPuerto = puertoConeccion.conexionConectada.presion
 	

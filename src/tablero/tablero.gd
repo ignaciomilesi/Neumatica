@@ -6,8 +6,9 @@ const fuenteDePresion = preload("res://src/clases/conexiones/fuente de presion/f
 const salidaAlExterior = preload("res://src/clases/conexiones/exterior/exterior.tscn")
 const deposito = preload("res://src/clases/elementosFijos/deposito/deposito.tscn")
 const valvula = preload("res://src/clases/elementosFijos/valvula/valvula.tscn")
+const puertoDeConexion = preload("res://src/clases/puertoConexion/puerto.tscn")
 
-var elementoEnConstruccion = null
+var elementoEnConstruccion : Elemento = null
 
 var estadoActual = VariableGlobales.estados.IDLE
 
@@ -21,7 +22,15 @@ func finalizar_nueva_conexion():
 	
 	get_tree().call_group("ElementoFijo", "habilitar_puertos_coneccion",false)
 	
-	elementoEnConstruccion.construcionFinalizada.disconnect(finalizar_nueva_conexion)
+	# genero los puertos de conexion
+	if elementoEnConstruccion is ElementoFijo :
+		for marcador : Marker2D in elementoEnConstruccion.markersParaPuertos:
+			var nuevoPuerto = puertoDeConexion.instantiate()
+			nuevoPuerto.global_position = marcador.global_position
+			nuevoPuerto.conexion1 = elementoEnConstruccion
+			$Puertos.add_child(nuevoPuerto)
+	
+	elementoEnConstruccion.instalacionFinalizada.disconnect(finalizar_nueva_conexion)
 	elementoEnConstruccion = null
 
 ################ Manejo de señales ################
@@ -60,8 +69,8 @@ func _on_ui_nuevo_elemento(elemento: Variant) -> void:
 		elementoEnConstruccion = valvula.instantiate()
 		$ElementosFijos.add_child(elementoEnConstruccion)
 	
-	elementoEnConstruccion.iniciar()
-	elementoEnConstruccion.construcionFinalizada.connect(finalizar_nueva_conexion)
+	elementoEnConstruccion.iniciar_instalacion()
+	elementoEnConstruccion.instalacionFinalizada.connect(finalizar_nueva_conexion)
 
 
 func _on_ui_cancelar_nuevo_elemento() -> void:
@@ -71,7 +80,7 @@ func _on_ui_cancelar_nuevo_elemento() -> void:
 		elementoEnConstruccion.queue_free()
 		elementoEnConstruccion = null
 		
-	get_tree().call_group("ElementoFijo", "habilitar_puertos_coneccion",false)
+	get_tree().call_group("puertoDeConexion", "habilitar_coneccion",false)
 	estadoActual = VariableGlobales.estados.IDLE
 
 
