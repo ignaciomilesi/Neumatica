@@ -6,7 +6,6 @@ const fuenteDePresion = preload("res://src/clases/conexiones/fuente de presion/f
 const salidaAlExterior = preload("res://src/clases/conexiones/exterior/exterior.tscn")
 const deposito = preload("res://src/clases/elementosFijos/deposito/deposito.tscn")
 const valvula = preload("res://src/clases/elementosFijos/valvula/valvula.tscn")
-const puertoDeConexion = preload("res://src/clases/puertoConexion/puerto.tscn")
 
 var elementoEnConstruccion : Elemento = null
 
@@ -19,16 +18,6 @@ func finalizar_nueva_conexion():
 	estadoActual = VariableGlobales.estados.IDLE
 	
 	$Camera2D/UI.reset_botones()
-	
-	get_tree().call_group("ElementoFijo", "habilitar_puertos_coneccion",false)
-	
-	# genero los puertos de conexion
-	if elementoEnConstruccion is ElementoFijo :
-		for marcador : Marker2D in elementoEnConstruccion.markersParaPuertos:
-			var nuevoPuerto = puertoDeConexion.instantiate()
-			nuevoPuerto.global_position = marcador.global_position
-			nuevoPuerto.conexion1 = elementoEnConstruccion
-			$Puertos.add_child(nuevoPuerto)
 	
 	elementoEnConstruccion.instalacionFinalizada.disconnect(finalizar_nueva_conexion)
 	elementoEnConstruccion = null
@@ -86,10 +75,11 @@ func _on_ui_cancelar_nuevo_elemento() -> void:
 
 func _on_timer_timeout() -> void:
 	if estadoActual == VariableGlobales.estados.ACTUALIZANDO:
-		get_tree().call_group("actualizable", "actualizar")
+		get_tree().call_group("puertoDeConexion", "actualizar")
 
 
 func _on_ui_actualizar() -> void:
+	get_tree().call_group("actualizaConexiones", "actualizar")
 	estadoActual = VariableGlobales.estados.ACTUALIZANDO
 	print("------------------------Corriendo------------------------")
 

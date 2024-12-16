@@ -25,16 +25,15 @@ func _input(event: InputEvent):
 script = ExtResource("1_md8w1")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.2
 autostart = true
-
-[node name="ElementosFijos" type="Node2D" parent="."]
 
 [node name="Conexiones" type="Node2D" parent="."]
 
-[node name="Puertos" type="Node2D" parent="."]
+[node name="ElementosFijos" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
 script = SubResource("GDScript_kqcu2")
 
 [node name="UI" parent="Camera2D" instance=ExtResource("2_0wvke")]

@@ -12,25 +12,19 @@ func desactivar_valvula():
 	$Sprite2D.position.x = 0
 	estadoActual = estados.REPOSO
 
-func conectarPuertos(puertoInicio : PuertoDeConexion, puertoFin : PuertoDeConexion):
-	
-	var presionPuerto1 = puertoInicio.conexionConectada.presion
-	var presionPuerto2 = puertoFin.conexionConectada.presion
-	
-	if presionPuerto1 > presionPuerto2 :
-		
-		puertoInicio.conexionConectada.modificar_masa(-10)
-		puertoFin.conexionConectada.modificar_masa(10)
-		
-	elif presionPuerto1 < presionPuerto2 :
-		
-		puertoInicio.conexionConectada.modificar_masa(10)
-		puertoFin.conexionConectada.modificar_masa(-10)
-
 func actualizar():
 	
+	var puertoDeCalculo : PuertoDeConexion = $Puertos/deCalculo
+	var puertoInicio : PuertoDeConexion
+	var puertoFin : PuertoDeConexion
+	
 	if estadoActual == estados.REPOSO :
-		conectarPuertos($"Puertos/2", $"Puertos/3")
+		puertoInicio = $"Puertos/deCalculo/2"
+		puertoFin = $"Puertos/deCalculo/3"
 	
 	if estadoActual == estados.ACTIVADA :
-		conectarPuertos($"Puertos/1", $"Puertos/2")
+		puertoInicio = $"Puertos/deCalculo/1"
+		puertoFin = $"Puertos/deCalculo/2"
+		
+	puertoDeCalculo.conexion1 = puertoInicio.conexion2
+	puertoDeCalculo.conexion2 = puertoFin.conexion2

@@ -1,17 +1,13 @@
 class_name Deposito
 extends ElementoFijo
 
-var presion : float = 0 : 
-	set(valor):
-		presion = valor
-		$Presion.text = "P: " + str(presion)
+func set_presion(nueva_presion : float) -> void:
+	presion = nueva_presion
+	$Presion.text = "P: " + "%.2f" % presion
 
-var volumen : float = 0 : 
-	set(valor):
-		volumen = valor
-		$Volumen.text = "V: " + str(volumen)
-
-var masa : float = 0
+func set_volumen(nuevo_volumen : float) -> void:
+	volumen = nuevo_volumen
+	$Volumen.text = "V: " + str(volumen)
 
 func setear_elemento(event: InputEvent) -> void:
 	
@@ -20,7 +16,6 @@ func setear_elemento(event: InputEvent) -> void:
 		instalando = false
 		$Input.visible = true
 		$Input.grab_focus()
-
 
 func _on_input_text_submitted(new_text: String) -> void:
 
@@ -32,20 +27,3 @@ func _on_input_text_submitted(new_text: String) -> void:
 		$Input.visible = false
 		
 		finalizar_instalacion()
-
-func actualizar():
-	var puertoConeccion : PuertoDeConexion = $"Puertos/1"
-	
-	var presionPuerto = puertoConeccion.conexionConectada.presion
-	
-	if presionPuerto > presion :
-		
-		puertoConeccion.conexionConectada.modificar_masa(-10)
-		masa += 10
-	
-	elif presionPuerto < presion :
-		
-		puertoConeccion.conexionConectada.modificar_masa(10)
-		masa += - 10
-	
-	presion = masa / volumen

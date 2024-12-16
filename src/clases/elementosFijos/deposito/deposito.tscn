@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://qbb7q7fu0ma8"]
+[gd_scene load_steps=4 format=3 uid="uid://qbb7q7fu0ma8"]
 
 [ext_resource type="Script" path="res://src/clases/elementosFijos/deposito/deposito.gd" id="1_433bx"]
 [ext_resource type="Texture2D" uid="uid://qyasgff7a71o" path="res://assets/art/elementosFijos/deposito.png" id="2_14qi3"]
+[ext_resource type="PackedScene" uid="uid://dpy8ak3bx15b" path="res://src/clases/puertoConexion/puerto.tscn" id="3_rln3a"]
 
-[node name="Deposito" type="Node2D" node_paths=PackedStringArray("markersParaPuertos") groups=["ElementoFijo", "actualizable"]]
+[node name="Deposito" type="Node2D" groups=["ElementoFijo", "actualizable"]]
 script = ExtResource("1_433bx")
-markersParaPuertos = [NodePath("Puertos/Marker2D")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(193, 0)
@@ -13,7 +13,7 @@ texture = ExtResource("2_14qi3")
 
 [node name="Puertos" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Puertos"]
+[node name="1" parent="Puertos" instance=ExtResource("3_rln3a")]
 
 [node name="Volumen" type="Label" parent="."]
 z_index = 1
@@ -28,7 +28,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "L: "
+text = "V: "
 vertical_alignment = 1
 
 [node name="Presion" type="Label" parent="."]

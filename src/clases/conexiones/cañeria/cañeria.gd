@@ -7,7 +7,8 @@ var comenzada : bool = false
 func set_presion(nueva_presion : float):
 	super(nueva_presion)
 	for etiqueta : Label in $Line2d/Etiquetas.get_children():
-		etiqueta.text = str(presion)
+		etiqueta.text = "%.2f" % presion
+
 
 func conectar(puerto: PuertoDeConexion):
 	
@@ -28,7 +29,6 @@ func conectar(puerto: PuertoDeConexion):
 		mostrar_etiquetas()
 		
 		finalizar_instalacion()
-
 
 func mostrar_etiquetas():
 	# muestro las etiquetas de presion en la mitad de cada seccion
@@ -51,25 +51,3 @@ func _process(_delta: float) -> void:
 		# doble punto al crear la cañeria)
 		if Input.is_action_just_pressed("mouse_click") and $Timer.is_stopped():
 			$Line2d.add_point(get_global_mouse_position())
-
-"""
-func actualizar():
-
-	var puertoDeMayorPresion : PuertoDeConexion
-	var puertoDeMenorPresion : PuertoDeConexion
-	
-	if puertoInicio.presion > puertoFin.presion :
-		puertoDeMayorPresion = puertoInicio  
-		puertoDeMenorPresion = puertoFin
-	else: 
-		puertoDeMayorPresion = puertoFin
-		puertoDeMenorPresion = puertoInicio
-	
-	puertoInicio.presion = puertoDeMayorPresion.presion
-	puertoFin.presion = puertoDeMayorPresion.presion
-	
-	puertoInicio.masa = puertoDeMayorPresion.masa
-	puertoFin.masa = puertoDeMayorPresion.masa
-	
-	presion = puertoDeMenorPresion.presion
-"""

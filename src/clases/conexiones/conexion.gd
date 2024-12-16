@@ -1,19 +1,8 @@
 class_name Conexion
 extends Elemento
 
-# var puertoInicio : PuertoDeConexion = null
-# var puertoFin : PuertoDeConexion = null
 
-var presion : float = 0 : set = set_presion
-var masa : float = 0
 
-func set_presion(nueva_presion : float) -> void:
-	presion = nueva_presion
-
-func modificar_masa(masaAVariar : float) -> void:
-	masa += masaAVariar
-	if masa < 0 : masa = 0
-	presion = masa * 0.10
 
 func iniciar_instalacion() -> void:
 	

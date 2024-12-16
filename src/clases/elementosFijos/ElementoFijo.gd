@@ -1,7 +1,6 @@
 class_name ElementoFijo
 extends Elemento
 
-@export var markersParaPuertos : Array[Marker2D]
 
 func iniciar_instalacion()-> void:
 	super()
