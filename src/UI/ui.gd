@@ -8,7 +8,7 @@ signal actualizar
 signal detener
 
 
-func desabilitar_botones(botonQueSeMantieneVisible : Button):
+func desabilitar_botones_salvo(botonQueSeMantieneVisible : Button):
 	get_tree().call_group("boton_UI", "set_visible", false)
 	# oculto todas las columnas
 	for contenedor : BoxContainer in $HFlowContainer/Botones/Contenedor/Barra.get_children():
@@ -27,29 +27,33 @@ func reset_botones():
 		contenedor.visible = true
 		
 	$HFlowContainer/Botones/Contenedor/Cancelar.visible = false
+	
+	$HFlowContainer.set_anchors_preset(Control.PRESET_TOP_WIDE, true)
 
 
 ################ Manejo de señales ################
 
 func _on_cañeria_pressed() -> void:
 	nuevo_elemento.emit(VariableGlobales.estados.CREANDO_CAÑERIA)
-	desabilitar_botones($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Cañeria)
+	desabilitar_botones_salvo($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Cañeria)
 
 func _on_fuente_presion_pressed() -> void:
 	nuevo_elemento.emit(VariableGlobales.estados.CREANDO_FUENTE_DE_PRESION)
-	desabilitar_botones($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/FuentePresion)
+	desabilitar_botones_salvo($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/FuentePresion)
 
 func _on_exterior_pressed() -> void:
 	nuevo_elemento.emit(VariableGlobales.estados.CREANDO_EXTERIOR)
-	desabilitar_botones($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Exterior)
+	desabilitar_botones_salvo($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevaConexion/Exterior)
 
 func _on_valvula_pressed() -> void:
 	nuevo_elemento.emit(VariableGlobales.estados.CREANDO_VALVULA)
-	desabilitar_botones($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Valvula)
+	$HFlowContainer.set_anchors_preset(Control.PRESET_FULL_RECT, true)
+	desabilitar_botones_salvo($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Valvula)
 
 func _on_deposito_pressed() -> void:
 	nuevo_elemento.emit(VariableGlobales.estados.CREANDO_DEPOSITO)
-	desabilitar_botones($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Deposito)
+	$HFlowContainer.set_anchors_preset(Control.PRESET_FULL_RECT, true)
+	desabilitar_botones_salvo($HFlowContainer/Botones/Contenedor/Barra/ContenedorNuevoElemento/Deposito)
 
 func _on_cancelar_pressed() -> void:
 	cancelar_nuevo_elemento.emit()

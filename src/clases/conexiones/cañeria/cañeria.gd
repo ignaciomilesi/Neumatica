@@ -1,34 +1,34 @@
 class_name Cañeria
 extends Conexion
 
+# lo uso para conocer si el puerto de selecionado comienza o finaliza la cañeria
+var comenzada : bool = false 
+
 func set_presion(nueva_presion : float):
 	super(nueva_presion)
 	for etiqueta : Label in $Line2d/Etiquetas.get_children():
-		etiqueta.text = str(presion)
+		etiqueta.text = "%.2f" % presion
 
-func conectar(puerto: PuertoValvula):
+
+func conectar(puerto: PuertoDeConexion):
 	
-	if puertoInicio == null:
-		print("Seleccionado: Puerto ", puerto.name, " de la valvula: ", puerto.owner)
+	print("Seleccionado: Puerto ", puerto.name)
+	puerto.conexion2 = self
+	
+	if !comenzada:
 		
-		puertoInicio = puerto
-		puerto.conexionConectada = self
+		comenzada = true
 		
 		$Line2d.add_point(puerto.global_position)
 		$Line2d.add_point(puerto.global_position)
 		$Timer.start(0.2)
 	
 	else:
-		print("Seleccionado: Puerto ", puerto.name, " de la valvula: ", puerto.owner)
-		
-		puertoFin = puerto
-		puerto.conexionConectada = self
-		
 		$Line2d.set_point_position($Line2d.get_point_count()-1, puerto.global_position)
 		
 		mostrar_etiquetas()
 		
-		finalizar_conexion()
+		finalizar_instalacion()
 
 func mostrar_etiquetas():
 	# muestro las etiquetas de presion en la mitad de cada seccion
@@ -42,7 +42,7 @@ func mostrar_etiquetas():
 
 func _process(_delta: float) -> void:
 	
-	if enConstrucion and puertoInicio != null:
+	if instalando and comenzada:
 		
 		# muevo el ultimo punto a la posicion del mouse
 		$Line2d.set_point_position($Line2d.get_point_count()-1, get_global_mouse_position())
@@ -51,23 +51,3 @@ func _process(_delta: float) -> void:
 		# doble punto al crear la cañeria)
 		if Input.is_action_just_pressed("mouse_click") and $Timer.is_stopped():
 			$Line2d.add_point(get_global_mouse_position())
-
-func actualizar():
-
-	var puertoDeMayorPresion : PuertoValvula
-	var puertoDeMenorPresion : PuertoValvula
-	
-	if puertoInicio.presion > puertoFin.presion :
-		puertoDeMayorPresion = puertoInicio  
-		puertoDeMenorPresion = puertoFin
-	else: 
-		puertoDeMayorPresion = puertoFin
-		puertoDeMenorPresion = puertoInicio
-	
-	puertoInicio.presion = puertoDeMayorPresion.presion
-	puertoFin.presion = puertoDeMayorPresion.presion
-	
-	puertoInicio.masa = puertoDeMayorPresion.masa
-	puertoFin.masa = puertoDeMayorPresion.masa
-	
-	presion = puertoDeMenorPresion.presion
