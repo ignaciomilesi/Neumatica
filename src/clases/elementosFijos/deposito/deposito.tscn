@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://qyasgff7a71o" path="res://assets/art/elementosFijos/deposito.png" id="2_14qi3"]
 [ext_resource type="PackedScene" uid="uid://dpy8ak3bx15b" path="res://src/clases/puertoConexion/puerto.tscn" id="3_rln3a"]
 
-[node name="Deposito" type="Node2D" groups=["ElementoFijo", "actualizable"]]
+[node name="Deposito" type="Node2D"]
 script = ExtResource("1_433bx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -21,7 +21,6 @@ VariableGlobales="*res://src/globales/variables.gd"
 
 [global_group]
 
-ElementoFijo=""
 areaDeColocacion=""
 puertoDeConexion=""
 actualizaConexiones=""

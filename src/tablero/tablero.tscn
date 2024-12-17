@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://wyjkgpww16rj"]
 
 [ext_resource type="Script" path="res://src/tablero/tablero.gd" id="1_md8w1"]
-[ext_resource type="PackedScene" uid="uid://lnb8d6xwtg8q" path="res://src/UI/ui.tscn" id="2_0wvke"]
+[ext_resource type="PackedScene" uid="uid://lnb8d6xwtg8q" path="res://src/UI/principal/ui.tscn" id="2_0wvke"]
 
 [sub_resource type="GDScript" id="GDScript_kqcu2"]
 resource_name = "camaraTablero"

@@ -15,7 +15,7 @@ func set_volumen(nuevo_volumen : float) -> void:
 	volumen = nuevo_volumen
 
 func modificar_masa(diferenciaDePresion : float) -> void:
-	if diferenciaDePresion < 0.1 :
+	if abs(diferenciaDePresion) < 0.3 :
 		presion += diferenciaDePresion
 	else:
 		masa += 2.5 * diferenciaDePresion
